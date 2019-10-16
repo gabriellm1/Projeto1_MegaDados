@@ -42,7 +42,7 @@
  - Aparelho VARCHAR(20) - Indica em qual aparelho o post foi visualizado
  - Browser VARCHAR(20) - Indica em qual browser o post foi acessado
  - IP VARCHAR(50) - Indica qual o IP que visualizou o post
- - Horário DATETIME - Indica o horário de visualização do post
+ - Horário DATETIME (PK) - Indica o horário de visualização do post
 
 #### Gosta Post:
  - Post Id INT (PK, FK) - É um valor inteiro que identifica o post que o usuário deu like
