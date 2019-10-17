@@ -1,7 +1,7 @@
 # Projeto 1 MegaDados
 ### Gabriel Monteiro e Rafael Vieira
 
-## Dicionário de dados - ENTREGA 1
+## Modelos: 
 
 Modelo entidade relacionamento:
 ![alt text](entidade_relacionamento.png)
@@ -11,6 +11,8 @@ Modelo relacional:
 
 ### Feature extra escolhida: 
 Ter uma função que lista as preferências de pássaro do usuário
+
+## Dicionário de dados:
 
 ### Tabelas:
 
