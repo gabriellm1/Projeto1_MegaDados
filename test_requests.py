@@ -21,7 +21,7 @@ class TestPassaroDB(unittest.TestCase):
     def setUpClass(cls):
         # SQL credentials
         user = 'root'
-        password = '-pMegaDados'
+        password = '-prafavr98'
 
         # Create database if necessary
         session = subprocess.Popen(['mysql','-u',user,password],stdin=PIPE,stderr=PIPE,stdout=PIPE)
@@ -42,7 +42,7 @@ class TestPassaroDB(unittest.TestCase):
         cls.connection = pymysql.connect(
         host='localhost',
         user='root',
-        password='MegaDados',
+        password='rafavr98',
         database='rede_passaros')
 
 
@@ -151,9 +151,29 @@ class TestPassaroDB(unittest.TestCase):
         self.assertEqual(r1.status_code,200)
         self.assertEqual(r1.json(),[["esse foi o ultimo","ultimo q eu fiz","bla"],["teste","@rafa #canario","z"]])
 
-    
-    
+    def test_l_like_post(self):
+        r = requests.post("http://127.0.0.1:8000/like/1,1?likeOrDeslike=1&ativo=1")
+        self.assertEqual(r.status_code,200)
+        with self.connection.cursor() as cursor:
+            cursor.execute('''SELECT usr_id, post_id, gostou, ativo FROM Gosta_post WHERE usr_id=1 AND post_id=1''')
+            self.assertEqual(cursor.fetchone(),(1, 1, 1, 1))
+            cursor.execute('''COMMIT''')
 
+    def test_m_deslike_post(self):
+        r = requests.post("http://127.0.0.1:8000/like/1,2?likeOrDeslike=0&ativo=1")
+        self.assertEqual(r.status_code,200)
+        with self.connection.cursor() as cursor:
+            cursor.execute('''SELECT usr_id, post_id, gostou, ativo FROM Gosta_post WHERE usr_id=1 AND post_id=2''')
+            self.assertEqual(cursor.fetchone(),(1, 2, 0, 1))
+            cursor.execute('''COMMIT''')
+        
+    def test_n_desativa_like_deslike_post(self):
+        r = requests.post("http://127.0.0.1:8000/unlike/1,1?ativo=0")
+        self.assertEqual(r.status_code,200)
+        with self.connection.cursor() as cursor:
+            cursor.execute('''SELECT usr_id, post_id, ativo FROM Gosta_post WHERE usr_id=1 AND post_id=1''')
+            self.assertEqual(cursor.fetchone(),(1, 1, 0))
+            cursor.execute('''COMMIT''')
 
 
 

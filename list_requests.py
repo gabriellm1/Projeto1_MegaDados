@@ -9,7 +9,7 @@ def connect_db(host='localhost',user='root',password='MegaDados',database='rede_
     connection = pymysql.connect(
         host='localhost',
         user='root',
-        password='MegaDados',
+        password='rafavr98',
         database='rede_passaros')
     return connection
 
@@ -173,7 +173,7 @@ def user_mais_popular(cidade):
 
 
 @app.get('/image_url')
-def busca_cross_mobile_browser():
+def busca_cross_imgurl_pass():
     connection = connect_db()
     with connection.cursor() as cursor:
         cursor.execute('''SELECT img_url, Menciona_pass.pass_id , COUNT(*)
