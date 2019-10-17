@@ -9,6 +9,8 @@ Modelo entidade relacionamento:
 Modelo relacional:
 ![alt text](schema.png)
 
+### Feature extra escolhida: 
+Ter uma função que lista as preferências de pássaro do usuário
 
 ### Tabelas:
 
