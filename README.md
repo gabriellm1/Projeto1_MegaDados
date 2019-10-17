@@ -57,5 +57,5 @@ Ter uma função que lista as preferências de pássaro do usuário
  - Post Id INT (PK, FK) - É um valor inteiro que identifica o post que o usuário deu like
  - User Id INT (PK, FK) - É um valor inteiro que identifica o usuário que deu like no post
  - Gostou BOOLEAN - Indica se o usuário deu like ou deslike no post (Like = 1, Deslike = 0)
- - Ativo BOOLEAN - Indica se o post está ativo e/ou se o usuário deu like ou deslike no post. Fica setado em 0 quando o usuário não deu like, nem deslike no post ou caso o post tenha sido deletado. É mudado para 1 quando o usuário da like ou deslike no post.
+ - Ativo BOOLEAN - Indica se o post está ativo. Começa setado em 0 para todos os usuários quando um post é criado.Quando o usuário da like ou deslike no post, ativo é setado para 1. Caso o usuário delete esse like ou deslike, ativo é setado para 0 novamente.
 
