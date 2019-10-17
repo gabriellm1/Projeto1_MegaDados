@@ -3,6 +3,13 @@
 
 ## Dicionário de dados - ENTREGA 1
 
+Modelo entidade relacionamento:
+![alt text](entidade_relacionamento.png)
+
+Modelo relacional:
+![alt text](schema.png)
+
+
 ### Tabelas:
 
 #### Usuários:
