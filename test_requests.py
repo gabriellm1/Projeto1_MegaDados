@@ -53,19 +53,19 @@ class TestPassaroDB(unittest.TestCase):
 
     def test_a_usuario(self):
         r = requests.put("http://127.0.0.1:8000/user?nome=hugo&email=%40&cidade=sp")
-        if r.status_code == 200:
-            with self.connection.cursor() as cursor:
-                cursor.execute('''SELECT nome,email,cidade from Usuarios WHERE nome="hugo" ''')
-                self.assertEqual(cursor.fetchone(),(('hugo', '@','sp')))
-                cursor.execute('''COMMIT''')    
+        self.assertEqual(r.status_code,200)
+        with self.connection.cursor() as cursor:
+            cursor.execute('''SELECT nome,email,cidade from Usuarios WHERE nome="hugo" ''')
+            self.assertEqual(cursor.fetchone(),(('hugo', '@','sp')))
+            cursor.execute('''COMMIT''')    
 
     def test_b_insert_passaro(self):
         r = requests.put("http://127.0.0.1:8000/passaro/bemtevi")
-        if r.status_code == 200:
-            with self.connection.cursor() as cursor:
-                cursor.execute('''SELECT * from Passaros''')
-                self.assertEqual(cursor.fetchone()[0],"bemtevi")
-                cursor.execute('''COMMIT''')
+        self.assertEqual(r.status_code,200)
+        with self.connection.cursor() as cursor:
+            cursor.execute('''SELECT * from Passaros''')
+            self.assertEqual(cursor.fetchone()[0],"bemtevi")
+            cursor.execute('''COMMIT''')
     
     def test_c_insert_post(self):
         r = requests.put("http://127.0.0.1:8000/post?titulo=teste&texto=%40hugo%20%23bemtevi&img_url=q&usr_id=1")
@@ -143,6 +143,13 @@ class TestPassaroDB(unittest.TestCase):
         r = requests.get("http://127.0.0.1:8000/image_url")
         self.assertEqual(r.status_code,200)
         self.assertEqual(r.json(),[["z","bemtevi",1],["z","canario",1]])
+
+    def test_k_lista_posts_usrs(self):
+        r = requests.put("http://127.0.0.1:8000/post?titulo=esse%20foi%20o%20ultimo&texto=ultimo%20q%20eu%20fiz&img_url=bla&usr_id=3")
+        r1 = requests.get("http://127.0.0.1:8000/posts/3")
+        self.assertEqual(r.status_code,200)
+        self.assertEqual(r1.status_code,200)
+        self.assertEqual(r1.json(),[["esse foi o ultimo","ultimo q eu fiz","bla"],["teste","@rafa #canario","z"]])
 
     
     
