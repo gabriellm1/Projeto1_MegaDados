@@ -1,6 +1,12 @@
 # Projeto 1 MegaDados
 ### Gabriel Monteiro e Rafael Vieira
 
+## Usabilidade:
+
+- Para criar a base de dados, rode cria_base.sql primeiro e depois script_delta.sql;
+- Para testar as funcionalidades da base de dados, rode test_requests.py (test_databse.py está desatualizado, pois era a base de testes usada na primeira entrega apenas);
+- Para rodar o servidor local, execute o comando no terminal no mesmo diretório do projeto: ``` uvicorn list_requests:app --reload ```
+
 ## Modelos: 
 
 Modelo entidade relacionamento:
